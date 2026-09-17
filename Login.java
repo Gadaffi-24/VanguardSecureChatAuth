@@ -10,7 +10,7 @@ public class Login {
     private String userLastName;
     private boolean isRegistered = false;
 
-    //Checks if username
+    //Checks that the username contains an underscore and is less than 5 characters
     public boolean checkUserName(String username) {
         if (username == null) {
             return false;
@@ -20,7 +20,7 @@ public class Login {
         return hasUnderscore && isValidLength;
     }
 
-    //Checks password
+    //Checks password complexity: at least 8 chars, 1 capital letter, 1 number, 1 special character
     public boolean checkPasswordComplexity(String password) {
         if (password == null) {
             return false;
@@ -46,15 +46,17 @@ public class Login {
     }
 
     //Validates South African cell phone number containing international code (+27)
+    // followed by numbers totaling no more than 10 digits.
     public boolean checkCellPhoneNumber(String cellNumber) {
         if (cellNumber == null) {
             return false;
         }
+        //Regex pattern matching South African international code (+27) followed by exactly 9 digits
         String regex = "^\\+27\\d{9}$";
         return Pattern.matches(regex, cellNumber);
     }
 
-    //Registers the user
+    //Registers the user after verifying all constraints
     public String registerUser(String username, String password, String cellNumber, String firstName, String lastName) {
         this.userFirstName = firstName;
         this.userLastName = lastName;
@@ -75,6 +77,7 @@ public class Login {
             return "Cell phone number is incorrectly formatted or does not contain an international code; please correct the number and try again.";
         }
 
+        // Saves credentials upon successful validation
         this.registeredUsername = username;
         this.registeredPassword = password;
         this.registeredCellNumber = cellNumber;
@@ -83,7 +86,7 @@ public class Login {
         return "Username successfully captured.\nPassword successfully captured.\nCell phone number successfully added.";
     }
 
-    //Verifies entered login credentials
+    //Verifies entered login credentials against stored registration data
     public boolean loginUser(String enteredUsername, String enteredPassword) {
         if (!isRegistered) {
             return false;
@@ -92,7 +95,7 @@ public class Login {
     }
 
     
-    //login status message
+    //Returns login status message
     public String returnLoginStatus(boolean loginSuccess) {
         if (loginSuccess) {
             return "Welcome " + userFirstName + ", " + userLastName + " it is great to see you again.";
