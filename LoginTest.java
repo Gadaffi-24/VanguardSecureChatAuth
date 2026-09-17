@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+//Unit test suite for validating Login methods and message outputs
 public class LoginTest {
 
     private Login login;
@@ -12,6 +13,7 @@ public class LoginTest {
     @BeforeEach
     public void setUp() {
         login = new Login();
+        // Pre-register user for login tests
         login.registerUser("kyl_1", "Ch&&sec@ke99!", "+27838968976", "Kyle", "Smith");
     }
 
