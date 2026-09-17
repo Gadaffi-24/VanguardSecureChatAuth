@@ -1,6 +1,9 @@
 package za.ac.rosebank.vanguard;
 
-// Encapsulates user profile data for VanguardSecureChatAuth
+/**
+ * Class Name: AccountManager
+ * Description: Encapsulates user profile data for VanguardSecureChatAuth.
+ */
 public class AccountManager {
     private String firstName;
     private String lastName;
