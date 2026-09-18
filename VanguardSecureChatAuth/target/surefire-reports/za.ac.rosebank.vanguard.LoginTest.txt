@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: za.ac.rosebank.vanguard.LoginTest
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.123 s -- in za.ac.rosebank.vanguard.LoginTest
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.182 s -- in za.ac.rosebank.vanguard.LoginTest

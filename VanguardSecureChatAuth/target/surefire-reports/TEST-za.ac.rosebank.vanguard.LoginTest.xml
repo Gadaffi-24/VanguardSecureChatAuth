@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="za.ac.rosebank.vanguard.LoginTest" time="0.123" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="za.ac.rosebank.vanguard.LoginTest" time="0.182" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\Student\Documents\GitHub\VanguardSecureChatAuth\VanguardSecureChatAuth - Copy\target\test-classes;C:\Users\Student\Documents\GitHub\VanguardSecureChatAuth\VanguardSecureChatAuth - Copy\target\classes;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.0\junit-jupiter-5.10.0.jar;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\Student\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Student\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\Student\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.0\junit-jupiter-params-5.10.0.jar;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.0\junit-jupiter-engine-5.10.0.jar;C:\Users\Student\.m2\repository\org\junit\platform\junit-platform-engine\1.10.0\junit-platform-engine-1.10.0.jar;"/>
+    <property name="java.class.path" value="C:\Users\Student\Documents\GitHub\VanguardSecureChatAuth\VanguardSecureChatAuth\target\test-classes;C:\Users\Student\Documents\GitHub\VanguardSecureChatAuth\VanguardSecureChatAuth\target\classes;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.0\junit-jupiter-5.10.0.jar;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\Student\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Student\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\Student\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.0\junit-jupiter-params-5.10.0.jar;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.0\junit-jupiter-engine-5.10.0.jar;C:\Users\Student\.m2\repository\org\junit\platform\junit-platform-engine\1.10.0\junit-platform-engine-1.10.0.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -15,10 +15,10 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\Student\AppData\Local\Temp\surefire1482461235285419774\surefirebooter-20260917232438440_3.jar C:\Users\Student\AppData\Local\Temp\surefire1482461235285419774 2026-09-17T23-24-38_192-jvmRun1 surefire-20260917232438440_1tmp surefire_0-20260917232438440_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Student\AppData\Local\Temp\surefire3196912390216592891\surefirebooter-20260918014035545_3.jar C:\Users\Student\AppData\Local\Temp\surefire3196912390216592891 2026-09-18T01-40-35_094-jvmRun1 surefire-20260918014035545_1tmp surefire_0-20260918014035545_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="za.ac.rosebank.vanguard.LoginTest"/>
-    <property name="surefire.test.class.path" value="C:\Users\Student\Documents\GitHub\VanguardSecureChatAuth\VanguardSecureChatAuth - Copy\target\test-classes;C:\Users\Student\Documents\GitHub\VanguardSecureChatAuth\VanguardSecureChatAuth - Copy\target\classes;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.0\junit-jupiter-5.10.0.jar;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\Student\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Student\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\Student\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.0\junit-jupiter-params-5.10.0.jar;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.0\junit-jupiter-engine-5.10.0.jar;C:\Users\Student\.m2\repository\org\junit\platform\junit-platform-engine\1.10.0\junit-platform-engine-1.10.0.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\Student\Documents\GitHub\VanguardSecureChatAuth\VanguardSecureChatAuth\target\test-classes;C:\Users\Student\Documents\GitHub\VanguardSecureChatAuth\VanguardSecureChatAuth\target\classes;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.0\junit-jupiter-5.10.0.jar;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\Student\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Student\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\Student\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.0\junit-jupiter-params-5.10.0.jar;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.0\junit-jupiter-engine-5.10.0.jar;C:\Users\Student\.m2\repository\org\junit\platform\junit-platform-engine\1.10.0\junit-platform-engine-1.10.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\Student"/>
     <property name="user.language" value="en"/>
@@ -26,12 +26,12 @@
     <property name="java.version.date" value="2026-01-20"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-25.0.2"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Users\Student\Documents\GitHub\VanguardSecureChatAuth\VanguardSecureChatAuth - Copy"/>
+    <property name="basedir" value="C:\Users\Student\Documents\GitHub\VanguardSecureChatAuth\VanguardSecureChatAuth"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Student\AppData\Local\Temp\surefire1482461235285419774\surefirebooter-20260917232438440_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Student\AppData\Local\Temp\surefire3196912390216592891\surefirebooter-20260918014035545_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.2+10-LTS-69"/>
@@ -47,7 +47,7 @@
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\Student\AppData\Local\Temp\"/>
     <property name="java.version" value="25.0.2"/>
-    <property name="user.dir" value="C:\Users\Student\Documents\GitHub\VanguardSecureChatAuth\VanguardSecureChatAuth - Copy"/>
+    <property name="user.dir" value="C:\Users\Student\Documents\GitHub\VanguardSecureChatAuth\VanguardSecureChatAuth"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
@@ -61,14 +61,14 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testPasswordComplexityFailure" classname="za.ac.rosebank.vanguard.LoginTest" time="0.047"/>
-  <testcase name="testLoginSuccessfulMatch" classname="za.ac.rosebank.vanguard.LoginTest" time="0.004"/>
+  <testcase name="testPasswordComplexityFailure" classname="za.ac.rosebank.vanguard.LoginTest" time="0.074"/>
+  <testcase name="testLoginSuccessfulMatch" classname="za.ac.rosebank.vanguard.LoginTest" time="0.003"/>
   <testcase name="testCellPhoneNumberIncorrectlyFormatted" classname="za.ac.rosebank.vanguard.LoginTest" time="0.003"/>
   <testcase name="testCellPhoneNumberCorrectlyFormatted" classname="za.ac.rosebank.vanguard.LoginTest" time="0.002"/>
   <testcase name="testUsernameIncorrectlyFormatted" classname="za.ac.rosebank.vanguard.LoginTest" time="0.002"/>
-  <testcase name="testReturnLoginStatusSuccess" classname="za.ac.rosebank.vanguard.LoginTest" time="0.007"/>
-  <testcase name="testReturnLoginStatusFailure" classname="za.ac.rosebank.vanguard.LoginTest" time="0.001"/>
-  <testcase name="testLoginFailedMatch" classname="za.ac.rosebank.vanguard.LoginTest" time="0.002"/>
-  <testcase name="testPasswordComplexitySuccess" classname="za.ac.rosebank.vanguard.LoginTest" time="0.001"/>
+  <testcase name="testReturnLoginStatusSuccess" classname="za.ac.rosebank.vanguard.LoginTest" time="0.008"/>
+  <testcase name="testReturnLoginStatusFailure" classname="za.ac.rosebank.vanguard.LoginTest" time="0.002"/>
+  <testcase name="testLoginFailedMatch" classname="za.ac.rosebank.vanguard.LoginTest" time="0.026"/>
+  <testcase name="testPasswordComplexitySuccess" classname="za.ac.rosebank.vanguard.LoginTest" time="0.002"/>
   <testcase name="testUsernameCorrectlyFormatted" classname="za.ac.rosebank.vanguard.LoginTest" time="0.001"/>
 </testsuite>
