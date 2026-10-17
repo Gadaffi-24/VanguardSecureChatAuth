@@ -18,7 +18,7 @@ public class Message {
     private static final List<Message> sentMessages = new ArrayList<>();
     private static String storagePath = DEFAULT_STORAGE_PATH;
 
-    //Reuses the Part 1 cell phone validation (regex) instead of duplicating it
+    //Reuses the Part 1 cell phone validation instead of duplicating it
     private static final Login CELL_VALIDATOR = new Login();
 
     private final String messageID;
@@ -27,10 +27,12 @@ public class Message {
     private final String messageText;
     private final String messageHash;
 
+    //Creates a message with an auto-generated ten-digit ID
     public Message(int messageNumber, String recipient, String messageText) {
         this(generateMessageID(), messageNumber, recipient, messageText);
     }
 
+    //Creates a message with a supplied ID used by the unit tests so hashes can be predicted
     public Message(String messageID, int messageNumber, String recipient, String messageText) {
         this.messageID = messageID;
         this.messageNumber = messageNumber;
@@ -39,6 +41,7 @@ public class Message {
         this.messageHash = createMessageHash();
     }
 
+    //Builds a random ten-digit ID one digit at a time and leading zeros are allowed
     public static String generateMessageID() {
         StringBuilder id = new StringBuilder();
         for (int i = 0; i < ID_LENGTH; i++) {
@@ -47,6 +50,7 @@ public class Message {
         return id.toString();
     }
 
+    //Ensures the message ID is made of digits and is not more than ten characters long
     public boolean checkMessageID() {
         return messageID != null
                 && !messageID.isEmpty()
@@ -59,6 +63,7 @@ public class Message {
         return "Message ID generated: " + messageID;
     }
 
+    //Reuses checkCellPhoneNumber() from Login
     public static String checkRecipientCell(String cellNumber) {
         if (CELL_VALIDATOR.checkCellPhoneNumber(cellNumber)) {
             return "Cell phone number successfully captured.";
@@ -67,6 +72,7 @@ public class Message {
                 + "Please correct the number and try again.";
     }
 
+    //Checks the 250 character limit and reports by how many characters the message is too long
     public static String checkMessageLength(String text) {
         int excess = text.length() - MAX_MESSAGE_LENGTH;
         if (excess > 0) {
@@ -76,6 +82,7 @@ public class Message {
         return "Message ready to send.";
     }
 
+    //Hash format: first two ID digits : message number : first word + last word, all in capitals
     public String createMessageHash() {
         String firstTwo = messageID.substring(0, Math.min(2, messageID.length()));
         String[] words = messageText.trim().split("\\s+");
@@ -109,10 +116,12 @@ public class Message {
         }
     }
 
+    //Called once the user presses 0 to confirm that the message must be deleted
     public String deleteMessage() {
         return "Message deleted.";
     }
 
+    //Full details in the required order: Message ID, Message Hash, Recipient and Message
     public String getDetails() {
         return "Message ID: " + messageID + "\n"
                 + "Message Hash: " + messageHash + "\n"
@@ -120,7 +129,7 @@ public class Message {
                 + "Message: " + messageText;
     }
 
-    // Returns the details of every message sent while the program has been running
+    //Returns the details of every message sent while the program has been running
     public static String printMessages() {
         if (sentMessages.isEmpty()) {
             return "No messages have been sent.";
@@ -132,11 +141,12 @@ public class Message {
         return output.toString().trim();
     }
 
+    //Returns how many messages that have already been sent
     public static int returnTotalMessages() {
         return sentMessages.size();
     }
 
-    //Adds this message to the JSON array in the storage file (creates the file if needed)
+    //Adds this message to the JSON array in the storage file and creates the file if needed
     public boolean storeMessage() {
         Path path = Paths.get(storagePath);
         String entry = toJson();
@@ -158,6 +168,7 @@ public class Message {
         }
     }
 
+    //Formats this message as one JSON object
     private String toJson() {
         return "  {\n"
                 + "    \"messageID\": \"" + escapeJson(messageID) + "\",\n"
@@ -168,6 +179,7 @@ public class Message {
                 + "  }";
     }
 
+    //Escapes quotes backslashes and control characters as required for JSON strings (Bray, 2017)
     private static String escapeJson(String text) {
         StringBuilder escaped = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
@@ -199,34 +211,30 @@ public class Message {
         return escaped.toString();
     }
 
+    //Allows the unit tests to write to a temporary file instead of the real messages.json
     public static void setStoragePath(String path) {
         storagePath = path;
     }
-
     public static void resetStoragePath() {
         storagePath = DEFAULT_STORAGE_PATH;
     }
 
+    //Empties the list of sent messages
     public static void clearSentMessages() {
         sentMessages.clear();
     }
-
     public String getMessageID() {
         return messageID;
     }
-
     public int getMessageNumber() {
         return messageNumber;
     }
-
     public String getRecipient() {
         return recipient;
     }
-
     public String getMessageText() {
         return messageText;
     }
-
     public String getMessageHash() {
         return messageHash;
     }
