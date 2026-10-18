@@ -5,7 +5,7 @@ Console-based registration, login and QuickChat messaging system developed in Ja
 Links:
 GitHub Repository: https://github.com/Gadaffi-24/VanguardSecureChatAuth.git
 YouTube Presentation (Part 1): https://youtu.be/hGN37Pw2YXY?si=7_9hqabkIpFIm9qe
-YouTube Presentation (Part 2): 
+YouTube Presentation (Part 2): https://youtu.be/PIpFs-L-zwY
 
 # Part 1
 Features:
