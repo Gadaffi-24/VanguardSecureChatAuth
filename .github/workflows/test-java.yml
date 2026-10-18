@@ -24,5 +24,11 @@ jobs:
     - name: Build with Maven
       run: mvn clean compile -f VanguardSecureChatAuth/pom.xml
 
-    - name: Run Unit Tests with Maven Surefire
+    - name: Run Login Class Tests (Part 1)
+      run: mvn test -Dtest=LoginTest -f VanguardSecureChatAuth/pom.xml
+
+    - name: Run Message Class Tests (Part 2)
+      run: mvn test -Dtest=MessageTest -f VanguardSecureChatAuth/pom.xml
+
+    - name: Run All Unit Tests with Maven Surefire
       run: mvn test -f VanguardSecureChatAuth/pom.xml
