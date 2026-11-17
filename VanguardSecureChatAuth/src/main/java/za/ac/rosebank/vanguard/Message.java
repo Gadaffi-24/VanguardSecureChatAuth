@@ -1,8 +1,6 @@
 package za.ac.rosebank.vanguard;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -26,6 +24,7 @@ public class Message {
     private final String recipient;
     private final String messageText;
     private final String messageHash;
+    private String sender = "Unknown";
 
     //Creates a message with an auto-generated ten-digit ID
     public Message(int messageNumber, String recipient, String messageText) {
@@ -149,19 +148,10 @@ public class Message {
     //Adds this message to the JSON array in the storage file and creates the file if needed
     public boolean storeMessage() {
         Path path = Paths.get(storagePath);
-        String entry = toJson();
         try {
-            String content = "[\n" + entry + "\n]\n";
-            if (Files.exists(path)) {
-                String existing = Files.readString(path, StandardCharsets.UTF_8).trim();
-                if (existing.startsWith("[") && existing.endsWith("]")) {
-                    String body = existing.substring(1, existing.length() - 1).trim();
-                    if (!body.isEmpty()) {
-                        content = "[\n" + body + ",\n" + entry + "\n]\n";
-                    }
-                }
-            }
-            Files.writeString(path, content, StandardCharsets.UTF_8);
+            List<Message> storedMessages = MessageJsonStorage.read(path);
+            storedMessages.add(this);
+            MessageJsonStorage.write(path, storedMessages);
             return true;
         } catch (IOException e) {
             return false;
@@ -169,11 +159,12 @@ public class Message {
     }
 
     //Formats this message as one JSON object
-    private String toJson() {
+    public String toJson() {
         return "  {\n"
                 + "    \"messageID\": \"" + escapeJson(messageID) + "\",\n"
                 + "    \"messageNumber\": " + messageNumber + ",\n"
                 + "    \"messageHash\": \"" + escapeJson(messageHash) + "\",\n"
+                + "    \"sender\": \"" + escapeJson(sender) + "\",\n"
                 + "    \"recipient\": \"" + escapeJson(recipient) + "\",\n"
                 + "    \"message\": \"" + escapeJson(messageText) + "\"\n"
                 + "  }";
@@ -223,6 +214,25 @@ public class Message {
     public static void clearSentMessages() {
         sentMessages.clear();
     }
+
+    //Returns a copy of the messages sent so far (used to fill the Sent Messages array in Part 3)
+    public static List<Message> getSentMessages() {
+        return new ArrayList<>(sentMessages);
+    }
+
+    //Returns the file the messages are stored in
+    public static String getStoragePath() {
+        return storagePath;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
     public String getMessageID() {
         return messageID;
     }
