@@ -63,15 +63,16 @@ public class MainApplication {
 
         // Messages can only be sent once the user has logged in successfully
         if (loginSuccess) {
-            runQuickChat(scanner);
+            runQuickChat(scanner, firstName + " " + lastName);
         }
 
         scanner.close();
     }
 
     // Main QuickChat loop: runs until the user selects Quit
-    private static void runQuickChat(Scanner scanner) {
+    private static void runQuickChat(Scanner scanner, String sender) {
         System.out.println("\nWelcome to QuickChat.");
+        MessageManager manager = new MessageManager();
 
         int numMessages = promptForNumMessages(scanner);
         boolean messagesEntered = false;
@@ -86,19 +87,22 @@ public class MainApplication {
                     if (messagesEntered) {
                         System.out.println("You have already entered all " + numMessages + " messages.");
                     } else {
-                        enterMessages(scanner, numMessages);
+                        enterMessages(scanner, numMessages, manager, sender);
                         messagesEntered = true;
                     }
                     break;
                 case 2:
-                    System.out.println("Coming Soon.");
+                    System.out.println("\n" + manager.displaySentReport());
                     break;
                 case 3:
                     System.out.println("Thank you for using QuickChat. Goodbye!");
                     running = false;
                     break;
+                case 4:
+                    runStoredMessagesMenu(scanner, manager);
+                    break;
                 default:
-                    System.out.println("Invalid option. Please enter 1, 2 or 3.");
+                    System.out.println("Invalid option. Please enter 1, 2, 3 or 4.");
             }
         }
     }
@@ -108,7 +112,57 @@ public class MainApplication {
         System.out.println("1) Send Messages");
         System.out.println("2) Show recently sent messages");
         System.out.println("3) Quit");
+        System.out.println("4) Stored Messages");
         System.out.print("Choose an option: ");
+    }
+
+    // Stored Messages menu: every option works on the arrays held by the MessageManager
+    private static void runStoredMessagesMenu(Scanner scanner, MessageManager manager) {
+        if (!manager.loadStoredMessages()) {
+            System.out.println("The stored messages file could not be read.");
+            return;
+        }
+        boolean inMenu = true;
+        while (inMenu) {
+            System.out.println("\n=== STORED MESSAGES ===");
+            System.out.println("1) Display the sender and recipient of all stored messages");
+            System.out.println("2) Display the longest stored message");
+            System.out.println("3) Search for a message ID");
+            System.out.println("4) Search for all messages (sent or stored) for a recipient");
+            System.out.println("5) Delete a stored message using its message hash");
+            System.out.println("6) Display a report of all stored messages");
+            System.out.println("7) Back to the main menu");
+            System.out.print("Choose an option: ");
+
+            switch (readNumber(scanner)) {
+                case 1:
+                    System.out.println("\n" + manager.displaySendersAndRecipients());
+                    break;
+                case 2:
+                    System.out.println("\n" + manager.displayLongestStoredMessage());
+                    break;
+                case 3:
+                    System.out.print("Enter the message ID to search for: ");
+                    System.out.println("\n" + manager.searchByMessageID(scanner.nextLine().trim()));
+                    break;
+                case 4:
+                    System.out.print("Enter the recipient cell number: ");
+                    System.out.println("\n" + manager.displayMessagesForRecipient(scanner.nextLine().trim()));
+                    break;
+                case 5:
+                    System.out.print("Enter the message hash to delete: ");
+                    System.out.println("\n" + manager.deleteMessageByHash(scanner.nextLine()));
+                    break;
+                case 6:
+                    System.out.println("\n" + manager.displayStoredReport());
+                    break;
+                case 7:
+                    inMenu = false;
+                    break;
+                default:
+                    System.out.println("Invalid option. Please enter a number from 1 to 7.");
+            }
+        }
     }
 
     // Asks how many messages the user wants to enter; only that many are allowed
@@ -125,7 +179,7 @@ public class MainApplication {
     }
 
     // The for loop counter doubles as the message number and 0 for the first message
-    private static void enterMessages(Scanner scanner, int numMessages) {
+    private static void enterMessages(Scanner scanner, int numMessages, MessageManager manager, String sender) {
         for (int messageNumber = 0; messageNumber < numMessages; messageNumber++) {
             System.out.println("\n--- Message " + (messageNumber + 1) + " of " + numMessages + " ---");
 
@@ -133,10 +187,11 @@ public class MainApplication {
             String text = promptForMessageText(scanner);
 
             Message message = new Message(messageNumber, recipient, text);
+            message.setSender(sender);
             System.out.println(message.generatedIDMessage());
             System.out.println("Message Hash: " + message.getMessageHash());
 
-            handleSendOption(scanner, message);
+            handleSendOption(scanner, message, manager);
         }
         System.out.println("\nTotal number of messages sent: " + Message.returnTotalMessages());
     }
@@ -171,8 +226,8 @@ public class MainApplication {
         }
     }
 
-    // Lets the user send, disregard or store the message
-    private static void handleSendOption(Scanner scanner, Message message) {
+    // Lets the user send, disregard or store the message; the manager keeps the arrays up to date
+    private static void handleSendOption(Scanner scanner, Message message, MessageManager manager) {
         boolean decided = false;
         while (!decided) {
             System.out.println("\nWhat would you like to do with this message?");
@@ -182,23 +237,26 @@ public class MainApplication {
             System.out.print("Choose an option: ");
             int choice = readNumber(scanner);
 
-            System.out.println(message.sentMessage(choice));
-
             if (choice == 1) {
+                System.out.println(manager.addMessage(message, MessageManager.FLAG_SENT));
                 System.out.println("\n" + message.getDetails());
                 decided = true;
             } else if (choice == 2) {
-                decided = confirmDelete(scanner, message);
+                System.out.println(message.sentMessage(choice));
+                decided = confirmDelete(scanner, message, manager);
             } else if (choice == 3) {
+                System.out.println(manager.addMessage(message, MessageManager.FLAG_STORED));
                 decided = true;
+            } else {
+                System.out.println(message.sentMessage(choice));
             }
         }
     }
 
-    // The message is only deleted when the user presses 0
-    private static boolean confirmDelete(Scanner scanner, Message message) {
+    // The message is only deleted (and added to the disregarded array) when the user presses 0
+    private static boolean confirmDelete(Scanner scanner, Message message, MessageManager manager) {
         if (readNumber(scanner) == 0) {
-            System.out.println(message.deleteMessage());
+            System.out.println(manager.addMessage(message, MessageManager.FLAG_DISREGARD));
             return true;
         }
         System.out.println("The message was not deleted. Please choose an option again.");
