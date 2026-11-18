@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: za.ac.rosebank.vanguard.MessageManagerTest
+-------------------------------------------------------------------------------
+Tests run: 32, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.348 s -- in za.ac.rosebank.vanguard.MessageManagerTest
