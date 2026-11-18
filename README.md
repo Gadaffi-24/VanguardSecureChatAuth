@@ -6,6 +6,7 @@ Links:
 GitHub Repository: https://github.com/Gadaffi-24/VanguardSecureChatAuth.git
 YouTube Presentation (Part 1): https://youtu.be/hGN37Pw2YXY?si=7_9hqabkIpFIm9qe
 YouTube Presentation (Part 2): https://youtu.be/PIpFs-L-zwY
+YouTube Presentation (Part 3 / Final PoE): 
 
 # Part 1
 Features:
@@ -22,3 +23,19 @@ Features:
 - The user can send, disregard (press 0 to delete) or store each message and stored messages are written to messages.json.
 - Total number of sent messages is displayed at the end.
 - JUnit 5 tests (MessageTest) run automatically through GitHub Actions (.github/workflows/test-java.yml).
+
+# Part 3
+Features:
+- Arrays (MessageManager) filled while the user works, nothing is hard-coded: Sent Messages, Disregarded Messages, Stored Messages (read from messages.json), Message Hashes and Message IDs. The IDs, hashes and messages are parallel arrays.
+- Main menu option 2 now shows a report of the sent messages and a fourth option, "4) Stored Messages", opens the Stored Messages menu:
+1. Display the sender and recipient of all stored messages
+2. Display the longest stored message
+3. Search for a message ID and display the recipient and message
+4. Search for all sent or stored messages for a recipient
+5. Delete a stored message using its message hash (also removed from messages.json)
+6. Display a report with the full details of all stored messages
+- MessageJsonStorage reads messages.json back into an array and writes it again (follows the JSON grammar in RFC 8259).
+- JUnit 5 tests (MessageManagerTest and MessageJsonStorageTest) use the Part 3 test data and run through GitHub Actions.
+
+# References
+Bray, T. (ed.) 2017. The JavaScript Object Notation (JSON) Data Interchange Format. RFC 8259. Internet Engineering Task Force. Available at: https://www.rfc-editor.org/rfc/rfc8259 [Accessed 17 November 2026].
