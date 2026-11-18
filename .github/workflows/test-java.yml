@@ -30,5 +30,11 @@ jobs:
     - name: Run Message Class Tests (Part 2)
       run: mvn test -Dtest=MessageTest -f VanguardSecureChatAuth/pom.xml
 
+    - name: Run Stored Messages Tests (Part 3)
+      run: mvn test -Dtest=MessageManagerTest -f VanguardSecureChatAuth/pom.xml
+
+    - name: Run JSON Storage Tests (Part 3)
+      run: mvn test -Dtest=MessageJsonStorageTest -f VanguardSecureChatAuth/pom.xml
+
     - name: Run All Unit Tests with Maven Surefire
       run: mvn test -f VanguardSecureChatAuth/pom.xml
