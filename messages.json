@@ -6,5 +6,13 @@
     "sender": "Mokete Gadaffi",
     "recipient": "+27123456789",
     "message": "Did you feed the dog, wena!"
+  },
+  {
+    "messageID": "7624591027",
+    "messageNumber": 1,
+    "messageHash": "76:1:WHERETIME",
+    "sender": "Mokete Gadaffi",
+    "recipient": "+27838884567",
+    "message": "Where are you? You are late! I have asked you to be on time."
   }
 ]
